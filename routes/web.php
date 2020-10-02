@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    try {
-        DB::connection()->getPdo();
-        echo 'Yey, it worked';
-    } catch (\Exception $e){
-        die("Could not connect to the database " . $e);
-    }
-    //return view('welcome');
-});
+Route::get('/', 'ProjectController@index');
+Route::get('/contact-us', 'ContactUsController@index');
+Route::post('/contact-us/sendmessage', 'ContactUsController@sendMessage');
+
+Route::get('/page/{id}', 'ProjectController@page');
